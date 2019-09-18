@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Yet Another Chat Sign Up</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+      body { padding: 10px; }
+    </style>
+  </head>
+  <body>
+    <h1>Sign Up</h1>
+      <form action="/signup" method="post" class="p-3">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input name="email" class="form-control" placeholder="Email" autocomplete="off" />
+          <label for="passwd">Password</label>
+          <input name="passwd" type="password" class="form-control" placeholder="Password" autocomplete="off" />
+        </div>
+        <% if (locals.errors) { %>
+          <% for(let error of errors) { %>
+            <div class="alert alert-warning" role="alert">
+              <%=error%>
+            </div>
+          <% } %>
+        <% } %>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      </form>
+  </body>
+</html>

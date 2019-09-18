@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Yet Another Chat</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+  </head>
+  <body>
+  <h1>Chat rooms</h1>
+  <ul id="rooms" class="m-3">
+    <% for(let room of rooms) { %>
+    <li><a href="<%=encodeURIComponent(room.name)%>"><%=room.name%></a></li>
+    <% } %>
+  </ul>
+  <% if (isAuthenticated) { %>
+    <form action="/" method="post" class="p-3">
+      <div class="form-group">
+        <label for="rname">Create Room</label>
+        <input name="rname" class="form-control" placeholder="Room name" autocomplete="off" />
+      </div>
+      <% if (locals.errors) { %>
+        <% for(let error of errors) { %>
+        <div class="alert alert-warning" role="alert">
+          <%=error%>
+        </div>
+        <% } %>
+      <% } %>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+  <% } else { %>
+    <a href="/login">Login</a> or <a href="/auth/facebook">Login with Facebook</a> too create room
+  <% } %>
+  </body>
+</html>
